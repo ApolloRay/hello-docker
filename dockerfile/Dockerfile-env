@@ -1,0 +1,8 @@
+FROM ubuntu:xenial
+
+ENV MSG=xxxxxxxx
+ENV FILE=/tmp/xxx.log
+
+RUN echo $MSG
+
+CMD ["/bin/bash", "-c", "echo $MSG > $FILE && sleep 3000"]

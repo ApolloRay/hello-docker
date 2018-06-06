@@ -1,0 +1,9 @@
+FROM ubuntu:xenial
+
+RUN apt-get update
+RUN apt-get -y install python3
+
+ENV APP=/data/app1.py
+
+
+ENTRYPOINT python3 $APP

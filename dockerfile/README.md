@@ -1,0 +1,60 @@
+# Dockerfile
+Dockerfile specifies all the configurations to build an image.
+
+## Instruction
+- `FROM`: base image
+- `LABEL`: replace the previous MAINTAINER, metadata for the image
+- `RUN`: effectuate actions as:  
+  - install packages
+  - modify configuration
+  - create links and directories
+  - create users and groups
+- `ENV`: define environment variables
+- `COPY/ADD`: copy files from the host to the container
+  - `COPY ./index.html /var/www/html/index.html`
+  - `ADD`: can unzip zip files
+- `ENTRYPOINT/CMD`: 
+  - `ENTRYPOINT`: main application that the image/container should run, always run even if we add another cmd in `docker container run CMD` (both cmds will be run)
+  - `CMD`: will be replaced by the cmd in `docker container run CMD`
+- `WORKDIR`: switch path inside the container
+- `USER`: execute the commands with which user
+- `VOLUME`: mount a volume to the container
+- `EXPOSE`: export a TCP port on the container
+- `ONBUILD`:
+- `HEALTHCHECK`: 
+- `SHELL`: use which shell to execute commands
+
+## Build Image
+- `docker image build` create a new image using the instructions in the Dockerfile
+  - `docker image build -t apache2-demo .`: `-t` stands for tag/name 
+  - `docker image build -t apache2-demo -f DockerfileXXX .`: `-f` use a Dockerfile with an arbitrary name
+- `docker image history apache2-demo`: show image build history 
+
+## ENV
+### Shell Env
+- `docker build -t img1 -f Dockerfile-env .`: create the image
+- `docker run --name ct1 --rm img1`: see the default msg in default file /tmp/xxx.log
+- `docker run --name ct2 --rm -e MSG=111 -e FILE=/tmp/yyy.log test1`: see the new msg
+
+### Python Argparse Env
+- `docker build -t img1 -f Dockerfile-env-python .`: create the image
+- `docker run --name ct1 --rm img1`: see the default msg
+- `docker run --name ct2 --rm -e MSG1=aaa -e MSG2=bbb img1`: see the new msgs
+
+### Using the same image to launch different Python
+- `docker build -t img1 -f Dockerfile-env-python2 .`: create the image
+- `docker run --name ct2 --rm -v $(pwd):/data img1`: launch the default app
+- `docker run --name ct2 --rm -v $(pwd):/data -e APP=/data/app2.py img1`: launch the new app
+
+
+## TP: Apache2 Web Server
+- write a Dockerfile to create an image with packages php, apache (apache2, libapache2-mod-php)
+- add a index.php file with: `<?php phpinfo() ?>`
+
+See the [Dockerfile](Dockerfile) as the answer
+- `docker image build -t apache2-demo .`
+- `docker container run -d -p 8885:80 apache2-demo`
+- test: 
+  - `http://localhost:8885/index.php`: NAT access through browser
+  - `http://172.17.0.2:80/index.php`: direct access through browser
+

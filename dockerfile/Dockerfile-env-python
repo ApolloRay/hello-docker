@@ -1,0 +1,13 @@
+FROM ubuntu:xenial
+
+RUN apt-get update
+RUN apt-get -y install python3
+
+ENV MSG1=xxxxxxxx
+ENV MSG2=yyyyyyyy
+
+ADD . /data
+WORKDIR /data
+
+
+ENTRYPOINT python3 app.py --msg1 $MSG1 --msg2 $MSG2
