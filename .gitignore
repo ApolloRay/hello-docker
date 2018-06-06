@@ -1,0 +1,8 @@
+# IDE
+.idea
+
+# Vagrant
+.vagrant
+
+# Log
+*.log
