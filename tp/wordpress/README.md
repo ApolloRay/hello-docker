@@ -1,30 +1,48 @@
-# WordPress Deployment
+# WordPress
 In order to deploy a *wordpress* application, we should:
 - create 1 network
 - create 2 volumes
-  - 1 for wordpress
   - 1 for mysql
-- create 2 containers
   - 1 for wordpress
-  - 1 for mysql
+- launch the *mysql* container
+- launch the *wordpress* container
 
-## Network Creation
+
+## Docker Deployment
+### Network Creation
 - `docker network create wordpress`
 - `docker network list`
 
-## Volume Creation
-- `docker volume create wordpress`
+### Volume Creation
 - `docker volume create mysql`
+- `docker volume create wordpress`
 - `docker volume list`
 
-## WordPress Image
+### WordPress Image Download
 - `docker image pull wordpress`
 - `docker image inspect wordpress:latest`
 
-## MySql Image
+### MySql Image Download
 - `docker image pull mysql`
-- `docker image inspect mysql:latest`
+- `docker image inspect mysql:5.7`
 
-## Launch Containers
-- `docker container run --name mysql -d --net wordpress -v mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=password  mysql:latest`
-- `docker container run --name wordpress -d --net wordpress -p 8090:80 --link mysql:mysql -v wordpress:/var/www/html -e WORDPRESS_DB_PASSWORD=password wordpress:latest`
+### Launch the Container MySql
+- `docker run --name wordpressdb -d --rm \
+--net wordpress \
+-v mysql:/var/lib/mysql \
+-e MYSQL_ROOT_PASSWORD=P@ssw0rd \
+-e MYSQL_DATABASE=wordpress \
+mysql:5.7`
+
+### Launch the Container Wordpress
+- `docker run --name wordpress -d --rm \
+--net wordpress -p 8090:80 --link wordpressdb:mysql \
+-e WORDPRESS_DB_PASSWORD=P@ssw0rd \
+wordpress:4.9.6`
+
+### Check
+- `http://localhost:8090` through a browser
+
+
+## docker-compose Deployment
+- `docker-compose up`

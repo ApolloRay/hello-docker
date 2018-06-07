@@ -20,11 +20,14 @@
 ## Network
 - [Docker Network](network/README.md)
 
-## TP: WordPress 
-- [WordPress Deployment](tp/wordpress/README.md)
-
 ## Dockerfile
 - [Docker Dockerfile](dockerfile/README.md)
+
+## docker-compose
+- [Docker Compose](docker-compose/README.md)
+
+## TP: WordPress 
+- [WordPress Deployment](tp/wordpress/README.md)
 
 ## TP: Frontend and Backend
 - [Frontend and Backend Deployment](tp/frontbackend/README.md)
@@ -32,6 +35,3 @@
 ## TP: Python Web Server
 - [Python Web Server](tp/python-server/README.md)
 
-## Compose
-is not widely used
-- [Docker Compose](compose/README.md)

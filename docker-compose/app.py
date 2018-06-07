@@ -9,5 +9,6 @@ def hello():
     count = redis.incr('hits')
     return 'Hello World! I have been seen {} times.\n'.format(count)
 
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True) # Flask default port 5000
+    app.run(host="0.0.0.0", debug=True)  # Flask default port 5000
