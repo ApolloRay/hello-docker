@@ -15,3 +15,4 @@
 
 
 ## docker-compose Deployment
+- `docker-compose up`

@@ -19,5 +19,9 @@
 - `docker container run --name ct-python-server -d --net net_python-server -p 8888:8888 -e MYSQL_HOST=ct-mysql img-python-server:0.1`: use new env
 
 
+## docker-compose Deployment
+- `docker-compose up` 
+
+
 ## Test
 - `curl localhost:8888`
