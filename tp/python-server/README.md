@@ -5,7 +5,6 @@
 - `docker image pull mysql:5.6`
 - `docker container run --name ct-mysql -d --net net_python-server -v vol_mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=P@ssw0rd  mysql:5.6`
 - `mysql -h CT_MYSQL_IP -u root -p`: test the access to the mysql server
-- `mysql -h CT_MYSQL_IP -u root -p < db1_tbl1.sql`: init the db1 database of mysql
 
 
 ## Python Server
@@ -24,4 +23,8 @@
 
 
 ## Test
+### Init MySql 
+- `mysql -h CT_MYSQL_IP -u root -p < db1_tbl1.sql`: init the db1 database of mysql
+
+### check
 - `curl localhost:8888`

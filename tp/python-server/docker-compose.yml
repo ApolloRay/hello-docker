@@ -15,7 +15,7 @@ services:
      networks:
       - net_python-server
      ports:
-      - "8888:8888"
+      - "6888:8888"
      environment:
        MYSQL_HOST: ct-mysql
 
