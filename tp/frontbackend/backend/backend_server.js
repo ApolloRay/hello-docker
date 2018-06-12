@@ -1,4 +1,4 @@
-//VM2 puts "Hello world" to port 8889
+//backend exposes "Hello world" to port 8889
 
 var http = require('http');
 
@@ -19,4 +19,4 @@ http.createServer(function (request, response) {
     response.end(data.toString());
 }).listen(8889);
 
-console.log('Server running at port 8889/');
+console.log('Backend server running at port 8889');

@@ -1,26 +1,29 @@
 version: '3'
 
 services:
-   ct-mysql:
+   mysql:
      image: mysql:5.6
      volumes:
-       - vol_mysql:/var/lib/mysql
+       - mysql:/var/lib/mysql
      networks:
-      - net_python-server
+      - python-server
      environment:
        MYSQL_ROOT_PASSWORD: P@ssw0rd
 
    pysn:
+     depends_on:
+       - mysql
      build: ./docker
      networks:
-      - net_python-server
+      - python-server
      ports:
-      - "6888:8888"
+      - 6666:8888
      environment:
-       MYSQL_HOST: ct-mysql
+       MYSQL_HOST: mysql
+       MYSQL_ROOT_PASSWORD: P@ssw0rd
 
 volumes:
-   vol_mysql:
+   mysql:
 
 networks:
-   net_python-server:
+   python-server:

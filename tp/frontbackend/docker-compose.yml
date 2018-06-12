@@ -1,19 +1,19 @@
 version: '3'
 
 services:
-  frontend:
-    build: ./frontend
-    networks:
-     - fbend
-    ports:
-     - "7888:8888"
-
   backend:
     build: ./backend
     volumes:
-     - ./backend:/tmp
+     - ./backend:/data
     networks:
-     - fbend
+     - frontbackend
+
+  frontend:
+    build: ./frontend
+    networks:
+     - frontbackend
+    ports:
+     - "6666:8888"
 
 networks:
-  fbend:
+  frontbackend:

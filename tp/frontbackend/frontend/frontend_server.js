@@ -14,15 +14,12 @@ var body_data;
 
 // Callback function
 var callback = function(response){
-   // Update
    var body = '';
    response.on('data', function(data) {
       body += data;
    });
 
    response.on('end', function() {
-      // End
-
     console.log(body);
     body_data = body;
    });
@@ -32,12 +29,10 @@ var callback = function(response){
 var http = require('http');
 
 http.createServer(function (request, response) {
-
     var req = http.request(options, callback);
     req.end();
     response.writeHead(200, {'Content-Type': 'text/plain'});
-    // Send response "Hello World"
     response.end(body_data);
 }).listen(vm1_port);
 
-console.log('VM1 Server running at port ' + vm1_port.toString());
+console.log('Frontend Server running' + vm1_port.toString());
