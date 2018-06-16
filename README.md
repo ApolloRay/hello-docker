@@ -1,15 +1,44 @@
 # Docker
+## Introduction
+### VM vs. Docker
+![VM vs. Docker](figures/docker-vm.png)
+ 
+## Main Components
+![Docker Main Components](figures/docker-architecture.png)
+
+- Docker client: send commands
+- Docker Daemon: server to handle requests
+  - `/etc/systemd/system/multi-user.target.wants/docker.serivce` `-H tcp://0.0.0.0`: accept remote requests
+  - `systemctl daemon-reload` and `systemctl restart docker.service`
+  - `docker -H 192.168.88.8 info`
+- Registry: host Docker images
+
 ## Terminology
 - image: a lightweight, stand-alone, executable package that includes everything needed to run a piece of software, including the code, a runtime, libraries, environment variables, and config files.
+  - *image name* = *repository* + *tag*
 - container: a runtime instance of an image -- what the image becomes in memory when actually executed. It runs completely isolated from the host environment by default, only accessing host files and ports if configured to do so.
-- service: different pieces of an application are called services.
-- stack:a stack is a group of interrelated services that share dependencies, and can be orchestrated and scaled together.
+- registry: image storage
+
 
 ## Installation
 - [Docker Installation](installation/README.md)
 
 ## Image
-- [Docker Image](image/README.md)
+### Image Layer
+![Image Kernel Architecture](figures/image-kernel.png)
+
+- bootfs: the kernel on the host to be shared by all the containers
+  - `uname -r` on the host and in the container: the same kernel info
+
+- rootfs: each container's userspace filesystem, it includes /dev, /proc, /bin
+![Multiple Containers upon the same kernel](figures/image-multi-containers.png) 
+
+- image contains multiple layers which are mutable
+
+- container layer: only the top layer is a writable layer corresponds to a container 
+![Image Multiple Layer](figures/image-multiple-layers.png)
+
+- [Docker Image Manipulation](image/README.md)
 
 ## Container
 - [Docker Container](container/README.md)
