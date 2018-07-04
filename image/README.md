@@ -18,6 +18,9 @@
   - `docker login`: login
   - `docker image push wukongsun/xenial:net`： upload to the remote registry 
 
+## Configuration
+- `/etc/docker/daemon.json`：set default image register `"registry-mirrors": ["https://10.123.103.9"],`
+
 ## TP
 ### Download a MySQL image
 - `docker image list`
