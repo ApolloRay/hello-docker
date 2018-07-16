@@ -1,4 +1,7 @@
 # Image
+## registry
+- `/etc/docker/daemon.json`：set default image register `"registry-mirrors": ["https://10.123.103.9"],`
+
 ## basic manipulation
 - `docker search ubuntu:xenial`: search all images from the remote registry
 - `docker image pull <repository>:<tag>`: download an image from the remote registry to the local registry
@@ -20,10 +23,13 @@
 - `docker container commit -m <comment> -a <author> CT_ID Image_Name:TAG`: create an image from a running container
 - push to a remote registry
   - `docker login`: login
-  - `docker image push wukongsun/xenial:net`： upload to the remote registry 
+  - `docker image push wukongsun/xenial:net`: upload to the remote registry 
 
-## Configuration
-- `/etc/docker/daemon.json`：set default image register `"registry-mirrors": ["https://10.123.103.9"],`
+
+## import/export
+- `docker save registry > /tmp/registry.tar`: export the registry image
+- `docker load < registry.tar`: import the registry image
+
 
 ## TP
 ### Download a MySQL image
