@@ -25,7 +25,7 @@
   - `-c 1024`: CPU priority 
 - `docker run -it --blkio-weight 600`
   - `--blkio-weight 600`: disk input/output priority
-  - 
+
 
 ## attach/exec
 - `docker attach`: attach to the container's terminal
@@ -33,19 +33,23 @@
 - `docker exec`: run a new process inside the container
   - `docker exec –it CT_ID /bin/bash`: here it attaches a running container with a bash
 
+
 ## stop/kill/start/restart
 - `docker container start CT_ID`: restart
 - `docker container stop CT_ID`: stop (send SIGTERM + SIGKILL)
 - `docker container kill CT_ID`: kill (send SIGKILL)
 
+
 ## pause/unpause
 - `docker pause CT_ID`
 - `docker unpause CT_ID`
+
 
 ## rm
 - `docker container rm CT_ID`: remove a *stopped* container
   - `docker container rm -f CT_ID`: force mode, remove a *running* container
   - `docker container rm -f $(docker container ps -aq)`: remove all the containers
+
 
 ## monitor
 - `docker container ps`
@@ -54,7 +58,8 @@
 - `docker logs CT_ID`
   - `docker logs -f CT_ID`: continue to display new logs 
 
-## TP
+
+## Example
 ### Manipulation
 - `docker container run hello-world`
 - `docker container ps`: we can't see the container `hello-world`

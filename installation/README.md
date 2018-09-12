@@ -3,7 +3,8 @@
 - `curl https://get.docker.com/ | sh`
 - `wget -qO- https://get.docker.com/ | sh`
 
-## New Installation
+
+## Debian APT Installation
 ```bash
 sudo apt-get remove docker docker-engine docker.io
 sudo apt-get remove docker-compose
@@ -14,12 +15,14 @@ sudo apt-get update
 sudo apt-get install docker-ce
 ```
 
+
 ## No-Root Configuration
 - `sudo groupadd docker`
 - `sudo usermod -aG docker $USER`
 - logout and then login to take effect
 
-## Chinese docker hub mirrors
+
+## Chinese Docker Repo Mirrors
 ```bash
 sudo vi /etc/docker/daemon.json
 {
@@ -28,6 +31,7 @@ sudo vi /etc/docker/daemon.json
 systemctl daemon-reload
 systemctl restart docker
 ```
+
 
 ## Test
 - `dockeer --version`

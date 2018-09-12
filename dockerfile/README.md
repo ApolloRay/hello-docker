@@ -1,6 +1,7 @@
 # Dockerfile
 Dockerfile specifies all the configurations to build an image.
 
+
 ## Instruction
 - `FROM`: base image
 - `LABEL`: replace the previous MAINTAINER, metadata for the image
@@ -26,7 +27,6 @@ Dockerfile specifies all the configurations to build an image.
 - `ENTRYPOINT`: command always to be run when launch the container, usually to launch a daemon 
   - always run even if add another NEW_CMD
   - `docker container run NEW_CMD`: NEW_CMD will be added as parameters to ENTRYPOINT
-
 - `USER`: execute the commands with which user
 - `ONBUILD`:
 - `HEALTHCHECK`: 
@@ -38,6 +38,7 @@ Dockerfile specifies all the configurations to build an image.
   - `docker image build -t apache2-demo:v1 .`: `-t` stands for tag/name 
   - `docker image build -t apache2-demo:v1 -f DockerfileXXX .`: `-f` use a Dockerfile with an arbitrary name
 - `docker image history apache2-demo`: show image build history 
+
 
 ## ENV
 ### Shell Env
@@ -56,7 +57,8 @@ Dockerfile specifies all the configurations to build an image.
 - `docker run --name ct2 --rm -v $(pwd):/workspace -e APP=/workspace/app2.py img1`: launch the new script
 
 
-## TP: Apache2 Web Server
+## Example
+### Apache2 Web Server
 - write a Dockerfile to create an image with packages php, apache (apache2, libapache2-mod-php)
 - add a index.php file with: `<?php phpinfo() ?>`
 

@@ -1,12 +1,13 @@
 # Image
 ## Configuration
-- `/etc/docker/daemon.json`：set default image register `"registry-mirrors": ["https://10.123.103.9"],`
+- `/etc/docker/daemon.json`：set default image register (no need to do)
 
         {
           "registry-mirrors": ["https://10.123.97.147"],  
           "max-concurrent-downloads": 6,
           "insecure-registries" : ["docker-registry.tshift-test.oa.com"] 
         }
+
 
 ## basic manipulation
 - `docker search ubuntu:xenial`: search all images from the remote registry
@@ -20,6 +21,7 @@
 - `docker image rm IMG_ID`: remove a local image
   - `docker image rm $(docker image ls -q) -f`: delete all images on ths host
 - `docker history IMG_ID`: display all the layers of an image
+
 
 ## tag
 - `docker image tag old_image:old_tag new_image:new_tag`: change the tag of a local
@@ -45,7 +47,7 @@
 - `docker image list`
 - `docker ps -a`
 
-### Create a Xenial Image with ifconfig
+### Create a Ubuntu:Xenial Image with ifconfig
 - `docker container run -it --rm ubuntu:xenial /bin/bash`
 - in the container, run:
   - `apt update`
@@ -56,9 +58,7 @@
 - `docker image push wukongsun/xenial:net`
 
 ## Docker Registry
-- install
-
-        docker run -d --name tshift-xgw-registry --restart always -p 38008:5000 -v /data/registry-data:/var/lib/registry registry:2.5.2
+- `docker run -d --name tshift-xgw-registry --restart always -p 38008:5000 -v /data/registry-data:/var/lib/registry registry:2.5.2`: install
 
 ### 使用Http Registry
 - `vi /usr/lib/systemd/system/docker.service`: 使docker pull支持http insecure registry协议

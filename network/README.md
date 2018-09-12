@@ -34,20 +34,14 @@
   - `ping -c 3 CT_ID2`
  
 
-## TP: VM-VM Ping
+## Example
+### VM-VM Ping
 - `docker network create net1`
 - `docker container run --name ct1 -it --rm --net=net1 wukongsun/xenial:net`
 - `docker container run --name ct2 -it --rm --net=net1 wukongsun/xenial:net`
 - in ct1: ping ct2
 
-
-## Inter-Host Network
-### Overlay
-on the Swarm manager
-- `docker network create -d overlay NET_ID`: create the overlay network
-- `docker service create --name test --network NET_ID --replicas 2 ubuntu sleep infinity`: attach a service to the net  
-
-## TP: Inter-VM Communication
+### Inter-VM Communication
 - `docker network create net1`
 - `docker container run --name ct1 -it -d --net=net1 ubuntu:xenial`
 - `docker container run --name ct2 -it --net=net1 ubuntu:xenial /bin/bash`

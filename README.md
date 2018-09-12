@@ -1,27 +1,30 @@
 # Docker
 ## Introduction
 ### VM vs. Docker
-![VM vs. Docker](figures/docker-vm.png)
+![VM vs. Docker](figures/container-vm.png)
  
+
 ## Main Components
 ![Docker Main Components](figures/docker-architecture.png)
 
 - Docker client: send commands
 - Docker Daemon: server to handle requests
-  - `/etc/systemd/system/multi-user.target.wants/docker.serivce` `-H tcp://0.0.0.0`: accept remote requests
+  - `/etc/systemd/system/multi-user.target.wants/docker.serivce` `-H tcp://0.0.0.0`: configuration to accept remote requests (no need to do)
   - `systemctl daemon-reload` and `systemctl restart docker.service`
-  - `docker -H 192.168.88.8 info`
+  - `docker -H 192.168.88.8 info`: example (no need to do)
 - Registry: host Docker images
 
+
 ## Terminology
-- image: a lightweight, stand-alone, executable package that includes everything needed to run a piece of software, including the code, a runtime, libraries, environment variables, and config files.
+- image: a lightweight executable package that includes everything needed to run a piece of software, including the code, a runtime, libraries, environment variables, and config files.
   - *image name* = *repository* + *tag*
 - container: a runtime instance of an image -- what the image becomes in memory when actually executed. It runs completely isolated from the host environment by default, only accessing host files and ports if configured to do so.
-- registry: image storage
+- registry: image store
 
 
 ## Installation
 - [Docker Installation](installation/README.md)
+
 
 ## Image
 ### Image Layer
@@ -40,29 +43,32 @@
 
 - [Docker Image Manipulation](image/README.md)
 
+
 ## Container
 - [Docker Container](container/README.md)
+
 
 ## Volume
 - [Docker Volume](volume/README.md)
 
+
 ## Network
 - [Docker Network](network/README.md)
+
 
 ## Dockerfile
 - [Docker Dockerfile](dockerfile/README.md)
 
+
 ## docker-compose
 - [Docker Compose](docker-compose/README.md)
 
-## TP: WordPress 
+
+## TPWordPress 
 - [WordPress Deployment](tp/wordpress/README.md)
-
-## TP: Frontend and Backend
 - [Frontend and Backend Deployment](tp/frontbackend/README.md)
-
-## TP: Python Web Server
 - [Python Web Server](tp/python-server/README.md)
+
 
 ## Advanced Topics
 - [Advanced Topics](topics/README.md)
