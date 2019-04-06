@@ -1,7 +1,7 @@
 # Container
 ## ps
-- `docker container ps`
-- `docker container ps -a`
+- `docker ps`
+  - `docker ps -a`: list all the containers included the killed
 
 ## run
 ### run

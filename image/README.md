@@ -5,18 +5,19 @@
         {
           "registry-mirrors": ["https://10.123.97.147"],  
           "max-concurrent-downloads": 6,
-          "insecure-registries" : ["docker-registry.tshift-test.oa.com"] 
+          "insecure-registries" : ["docker-registry.xxx.com"] 
         }
+    
 
 
 ## basic manipulation
-- `docker search ubuntu:xenial`: search all images from the remote registry
-- `docker image pull <repository>:<tag>`: download an image from the remote registry to the local registry
-  - `docker image pull <repository>`: if we don't specify an image tag, Docker uses latest as default tag
-  - `docker image pull -a <repository>`: download all the images of the repo  
-  - `docker image pull gcr.io/nigelpoulton/tu-demo:v2`: download from a third-party registry
 - `docker image ls`: list all images in the local registry
   - `docker image ls -q`: display only image ID 
+- `docker search ubuntu:xenial`: search all images from the remote registry
+- docker image pull <repository>:<tag>`: download an image from the remote registry to the local registry
+  - `docker image pull <repository>`: if we don't specify an image tag, Docker uses `latest` as default tag
+  - `docker image pull -a <repository>`: download all the images of the repo  
+  - `docker image pull gcr.io/nigelpoulton/tu-demo:v2`: download from a third-party registry
 - `docker image inspect ubuntu:xenial`: inspect a local image
 - `docker image rm IMG_ID`: remove a local image
   - `docker image rm $(docker image ls -q) -f`: delete all images on ths host
@@ -24,59 +25,38 @@
 
 
 ## tag
-- `docker image tag old_image:old_tag new_image:new_tag`: change the tag of a local
+- `docker image tag old_repo:old_tag new_repo:new_tag`: change the tag of a local
 
 
 ## create/commit/push
-- `docker container commit -m <comment> -a <author> CT_ID Image_Name:TAG`: create an image from a running container
+- `docker container commit -m <comment> -a <author> CT_ID REPO:TAG`: create an image from a running container
 - push to a remote registry
-  - `docker login`: login
+  - `docker login`: login to `hub.docker.com`
   - `docker image push wukongsun/xenial:net`: upload to the remote registry 
 
 
 ## import/export
-- `docker save registry > /tmp/registry.tar`: export the registry image
+- `docker save REPO:Tag > /tmp/registry.tar`: export the registry image
 - `docker load < registry.tar`: import the registry image
 
 
 ## TP
 ### Download a MySQL image
-- `docker image list`
+- `docker image ls`
 - `docker search mysql`
 - `docker pull mysql`
-- `docker image list`
+- `docker image ls`
 - `docker ps -a`
 
 ### Create a Ubuntu:Xenial Image with ifconfig
-- `docker container run -it --rm ubuntu:xenial /bin/bash`
-- in the container, run:
+- `docker container run -it --rm ubuntu:16.04 /bin/bash`
+- in this container terminal, run:
+  - `ping 8.8.8.8`: it doesn't work since it doesn't have the `ping` tool
   - `apt update`
-  - `apt install net-tools`
-- from another terminal: `docker container ps`, where you can find `CT_ID`
-- `docker container commit -m "xenial with net-tools" -a "wukong" CT_ID wukongsun/xenial:net`
-- `docker login`
-- `docker image push wukongsun/xenial:net`
-
-## Docker Registry
-- `docker run -d --name tshift-xgw-registry --restart always -p 38008:5000 -v /data/registry-data:/var/lib/registry registry:2.5.2`: install
-
-### 使用Http Registry
-- `vi /usr/lib/systemd/system/docker.service`: 使docker pull支持http insecure registry协议
-
-        ExecStart=/usr/bin/dockerd --insecure-registry 127.0.0.1:38008
-
-- `vi /etc/docker/daemon.json`
-
-        {
-          "registry-mirrors": ["https://10.123.97.147"],  
-          "max-concurrent-downloads": 6,
-          "insecure-registries" : ["docker-registry.tshift-test.oa.com"] 
-        }
-
-### Manipulation
-- `curl -X GET https://myregistry:5000/v2/_catalog`: list image of the registry
-
-### Upload Image
-如果是dockerhub上缺省的image，需要放在*library*目录下！
-- `docker tag registry:2.5.2 127.0.0.1:38008/library/registry:2.5.2`
-- `docker push 127.0.0.1:38008/library/registry:2.5.2`
+  - `apt install iputils-ping`
+  - `ping 8.8.8.8`: it works now!
+- from another terminal, run:
+  - `docker container ps`, where you can find `CT_ID`
+  - `ddocker container commit -m "xenial with ping" -a "USER_NAME" CT_ID REPO/xenial:net`
+  - `docker login`
+  - `docker image push REPO/xenial:net`
