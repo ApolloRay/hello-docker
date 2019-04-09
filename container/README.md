@@ -4,15 +4,15 @@
   - `docker ps -a`: list all the containers included the killed
 
 ## run
-### run
-- `docker container run ubuntu:xenial /bin/bash`: tell Docker which process to run inside container to replace default CMD 
-- `docker container run --name CT_Name ubuntu:xenial`: name of the container
+### Run
+- `docker container run ubuntu:xenial /bin/bash`: tell Docker which process to run inside container to replace default CMD, but nothing can be shown in the terminal 
 - `docker container run -it ubuntu:xenial`: interactive mode, connect your terminal to the CT's bash shell
   - `Ctrl-PQ`: exist and suspend the container 
-- `docker container run -it -d ubuntu:xenial`: detached mode (executing as daemon in bg)
+- `docker container run --name CT_Name ubuntu:xenial`: name of the container
+- `docker container run -it -d ubuntu:xenial`: detached mode (executing as daemon in background)
 - `docker container run -it --rm ubuntu:xenial`: remove after the execution
-- `docker container run -d -p 8080:8080 test:latest`: NAT the port
-- `docker container run -d -P training/webapp python app.py`: NAT port of the container to a random port of the host
+- `docker container run -d -p 80:80 ubuntu:xenial`: NAT the port
+- `docker container run -d -P ubuntu:xenial`: NAT port of the container to a random port of the host
 
 ### Resource Limitation
 - `docker run -m 200M --memory-swap=300M ubuntu`
@@ -29,7 +29,7 @@
 
 ## attach/exec
 - `docker attach`: attach to the container's terminal
-  - `docker attach UUID`
+  - `docker attach CT_ID`
 - `docker exec`: run a new process inside the container
   - `docker exec –it CT_ID /bin/bash`: here it attaches a running container with a bash
 

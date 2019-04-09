@@ -13,10 +13,10 @@
 - `docker container run --name backend -d --net=frontbackend backend`
 - `docker container run --name frontend -d --net=frontbackend -p 6666:8888 frontend`
 
-
+<!--
 ## docker-compose Deployment
 - `docker-compose up`
-
+-->
 
 ## Check
 - `curl localhost:6666`： type twice

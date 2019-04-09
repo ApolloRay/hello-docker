@@ -19,11 +19,11 @@ In order to deploy a *wordpress* application, we should:
 - `docker volume list`
 
 ### WordPress Image Download
-- `docker image pull wordpress`
-- `docker image inspect wordpress:latest`
+- `docker image pull wordpress:4.9.6`
+- `docker image inspect wordpress:4.9.6`
 
 ### MySql Image Download
-- `docker image pull mysql`
+- `docker image pull mysql:5.7`
 - `docker image inspect mysql:5.7`
 
 ### Launch the Container MySql
@@ -44,5 +44,7 @@ wordpress:4.9.6`
 - `http://localhost:8090` through a browser
 
 
+<!--
 ## docker-compose Deployment
 - `docker-compose up`
+-->
