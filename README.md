@@ -1,8 +1,8 @@
 # Docker
 ## Introduction
-### VM vs. Docker
-![VM vs. Docker](figures/container-vm.png)
- 
+- [Installation](installation/README.md)
+- [Concepts](concepts/README.md)
+- [Image Concepts](concepts/image.md)
 
 ### Terminology
 - image: a lightweight executable package that includes everything needed to run a piece of software, including the code, a runtime, libraries, environment variables, and config files.
@@ -12,8 +12,7 @@
 
 
 ## Basic Manipulation
-- [Docker Installation](installation/README.md)
-- [Image Manipulation](image/README.md)
+- [Image](image/README.md)
 - [Container](container/README.md)
 - [Volume](volume/README.md)
 - [Network](network/README.md)
@@ -27,6 +26,7 @@
 - [Python Web Server](tp/python-server/README.md)
 
 
+<!--
 ## Advanced Topics
 - [Advanced Topics](topics/README.md)
-
+-->

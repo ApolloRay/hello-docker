@@ -19,15 +19,21 @@ Mount host filesystem to container volume
   - `echo "xxx" > /var/lib/docker/volumes/XXX/_data`
 
 
-## Volume Container
+<!-- ## Volume Container
 - `docker create --name vc_data -v ~/xxx:/usr/local/apache2/htdocs busybox`
 - `docker run --name web1 -d -p 80 --volume-from vc_data httpd`: separate container from host
-
-
-## Data-packed 
+-->
 
 
 ## Example
-- `docker volume create volume1`
-- `docker container run -it --rm -v volume1:/data ubuntu:xenial /bin/bash`
-- `ls /data`: check the path in the container
+- `docker volume create vol1`
+- `docker container run -it --rm -v vol1:/data ubuntu:xenial /bin/bash`
+- in the container
+  - `ls /data`: check the path in the container
+  - `touch /data/xxx`
+  - `exit`
+- `docker ps`: the container is killed
+- `docker container run -it --rm -v vol1:/data ubuntu:xenial /bin/bash`: create a new container
+- in the container
+  - `ls /data`: check the previously created `xxx` file in the container
+

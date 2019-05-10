@@ -1,29 +1,19 @@
 # Container
-## Conception
-一个程序运起来后的计算机执行环境的总和（内存中的数据、寄存器里的值、堆栈中的指令、被打开的文件，以及各种设备的状态信息的一个集合）被称为一个进程。
-容器技术的核心功能，就是通过约束和修改进程的动态表现，从而为其创造出一个“边界”。 
-对于Docker等大多数Linux容器来说，Cgroups技术是用来制造约束的主要手段，而Namespace技术则是用来修改进程视图的主要方法。
-
-### Namespace
-
-### Cgroups
-               
-                                                                                          
 ## Manipulation
 ### ps
-- `docker container ps`
-- `docker container ps -a`
+- `docker ps`
+  - `docker ps -a`: list all the containers included the killed
 
 ### run
-#### run
-- `docker container run ubuntu:xenial /bin/bash`: tell Docker which process to run inside container to replace default CMD 
-- `docker container run --name CT_Name ubuntu:xenial`: name of the container
+#### Run
+- `docker container run ubuntu:xenial /bin/bash`: tell Docker which process to run inside container to replace default CMD, but nothing can be shown in the terminal 
 - `docker container run -it ubuntu:xenial`: interactive mode, connect your terminal to the CT's bash shell
   - `Ctrl-PQ`: exist and suspend the container 
-- `docker container run -it -d ubuntu:xenial`: detached mode (executing as daemon in bg)
+- `docker container run --name CT_Name ubuntu:xenial`: name of the container
+- `docker container run -it -d ubuntu:xenial`: detached mode (executing as daemon in background)
 - `docker container run -it --rm ubuntu:xenial`: remove after the execution
-- `docker container run -d -p 8080:8080 test:latest`: NAT the port
-- `docker container run -d -P training/webapp python app.py`: NAT port of the container to a random port of the host
+- `docker container run -d -p 80:80 ubuntu:xenial`: NAT the port
+- `docker container run -d -P ubuntu:xenial`: NAT port of the container to a random port of the host
 
 #### Resource Limitation
 - `docker run -m 200M --memory-swap=300M ubuntu`
@@ -40,7 +30,7 @@
 
 ### attach/exec
 - `docker attach`: attach to the container's terminal
-  - `docker attach UUID`
+  - `docker attach CT_ID`
 - `docker exec`: run a new process inside the container
   - `docker exec –it CT_ID /bin/bash`: here it attaches a running container with a bash
 
