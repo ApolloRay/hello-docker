@@ -1,10 +1,21 @@
 # Container
-## ps
+## Conception
+一个程序运起来后的计算机执行环境的总和（内存中的数据、寄存器里的值、堆栈中的指令、被打开的文件，以及各种设备的状态信息的一个集合）被称为一个进程。
+容器技术的核心功能，就是通过约束和修改进程的动态表现，从而为其创造出一个“边界”。 
+对于Docker等大多数Linux容器来说，Cgroups技术是用来制造约束的主要手段，而Namespace技术则是用来修改进程视图的主要方法。
+
+### Namespace
+
+### Cgroups
+               
+                                                                                          
+## Manipulation
+### ps
 - `docker container ps`
 - `docker container ps -a`
 
-## run
 ### run
+#### run
 - `docker container run ubuntu:xenial /bin/bash`: tell Docker which process to run inside container to replace default CMD 
 - `docker container run --name CT_Name ubuntu:xenial`: name of the container
 - `docker container run -it ubuntu:xenial`: interactive mode, connect your terminal to the CT's bash shell
@@ -14,7 +25,7 @@
 - `docker container run -d -p 8080:8080 test:latest`: NAT the port
 - `docker container run -d -P training/webapp python app.py`: NAT port of the container to a random port of the host
 
-### Resource Limitation
+#### Resource Limitation
 - `docker run -m 200M --memory-swap=300M ubuntu`
   - `-m 200M`: memory
   - `--memory-swap 300M`: memory+swap
@@ -27,31 +38,27 @@
   - `--blkio-weight 600`: disk input/output priority
 
 
-## attach/exec
+### attach/exec
 - `docker attach`: attach to the container's terminal
   - `docker attach UUID`
 - `docker exec`: run a new process inside the container
   - `docker exec –it CT_ID /bin/bash`: here it attaches a running container with a bash
 
-
-## stop/kill/start/restart
+### stop/kill/start/restart
 - `docker container start CT_ID`: restart
 - `docker container stop CT_ID`: stop (send SIGTERM + SIGKILL)
 - `docker container kill CT_ID`: kill (send SIGKILL)
 
-
-## pause/unpause
+### pause/unpause
 - `docker pause CT_ID`
 - `docker unpause CT_ID`
 
-
-## rm
+### rm
 - `docker container rm CT_ID`: remove a *stopped* container
   - `docker container rm -f CT_ID`: force mode, remove a *running* container
   - `docker container rm -f $(docker container ps -aq)`: remove all the containers
 
-
-## monitor
+### monitor
 - `docker container ps`
 - `docker container top CT_ID`
 - `docker container top`: real-time monitor

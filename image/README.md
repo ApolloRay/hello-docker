@@ -1,4 +1,19 @@
 # Image
+## Conception
+![Image Kernel Architecture](figures/image-kernel.png)
+
+- bootfs: the kernel on the host to be shared by all the containers
+  - `uname -r` on the host and in the container: the same kernel info
+
+- rootfs: each container's userspace filesystem, it includes /dev, /proc, /bin
+![Multiple Containers upon the same kernel](figures/image-multi-containers.png) 
+
+- image contains multiple layers which are mutable
+
+- container layer: only the top layer is a writable layer corresponds to a container 
+![Image Multiple Layer](figures/image-multiple-layers.png)
+
+
 ## Configuration
 - `/etc/docker/daemon.json`：set default image register (no need to do)
 
